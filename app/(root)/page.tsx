@@ -10,7 +10,7 @@ export default async function Home({searchParams}:{searchParams : Promise<{query
         image: 'https://www.google.com/url?sa=i&url=https%3A%2F%2Fwww.davincified.com%2Fmt%2Fproducts%2Fmajestic-dragon-paint-by-numbers-kit&psig=AOvVaw0IH0CZMIi-UWWcsA3gXkLh&ust=1730531083079000&source=images&cd=vfe&opi=89978449&ved=0CBQQjRxqFwoTCPDUqunIuokDFQAAAAAdAAAAABAE',
         category: 'Dragon',
         views : 55,
-        author: {_id:1} }]
+        author: {_id:1, name:"Samarth"} }]
     return (
         <>
             <section className='pink_container'>
@@ -26,7 +26,7 @@ export default async function Home({searchParams}:{searchParams : Promise<{query
             <section className='section_container'>
                 <p className='text-30-semibold'>
                     {query ? `Search results for "${query}"`: 'All Projects' }
-                </p>-
+                </p>
                 <ul className='mt-7 card_grid'>
                     {posts ?. length>0 ?(
                         posts.map((post:StartupCardType)=>(

@@ -30,4 +30,15 @@ export const STARTUP_BY_ID_QUERY =
 
 export const STARTUP_VIEWS_QUERY= defineQuery(`
   *[_type=="startup" && _id==$id][0]{
-  _id,views}`);
+  _id,
+  views}`);
+{/**here we take data from github like name ,username,email.giyhub bio pic,github bio etc. and put it in authot details */}
+export const AUTHOR_BY_GITHUB_ID_QUERY=defineQuery(`
+  *[_type=="author" && id==$id][0]{
+   _id,
+   id,
+   name,
+   username,
+   email,
+   image,
+   bio}`);

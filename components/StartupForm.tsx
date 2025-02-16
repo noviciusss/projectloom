@@ -3,7 +3,7 @@
 import React, { useActionState, useState } from "react";
 import { Input } from "./ui/input";
 import { Textarea } from "./ui/textarea";
-import MDeditor from "@uiw/react-md-editor";
+import MDEditor from "@uiw/react-md-editor";
 import { Button } from "./ui/button";
 import { Send } from "lucide-react";
 import { error } from "console";
@@ -11,9 +11,11 @@ import { formSchema } from "@/lib/validation";
 import {z} from 'zod';
 import { useToast } from "@/hooks/use-toast";
 import { useRouter } from "next/navigation";
-const StartupForm =()=>{
-    const[errors,seterrors]= useState<Record<string,string>>({});
-    const[ pitch,setPitch]=useState("");
+import { createPitch } from "@/lib/action";
+
+const StartupForm = () => {
+    const [errors, setErrors] = useState<Record<string, string>>({});
+    const [pitch, setPitch] = useState<string>("");
     const {toast}=useToast();
     const router = useRouter();
     const handleFormSubmit = async(prevState:any,formData:FormData)=>{
@@ -24,43 +26,43 @@ const StartupForm =()=>{
                 category:formData.get("category") as string,
                 link:formData.get("link") as string,
                 pitch,
-            }
+            };
             await formSchema.parseAsync(formValues)//comapre with formschema to match
             //schema needed just for sake of taking data in formate
 
-            const result= await createIdea(prevState,formData,pitch);//
+            const result= await createPitch(prevState,formData,pitch);//
             if(result.status === 'SUCCESS'){
                 toast({
                     title:'Success',
                     description:'Your startup pitch has been created successfully'
-                })
-                router.push(`/startup/${result.id}`)//this will redirect to show created pitch
+                });
+                router.push(`/startup/${result._id}`)//this will redirect to show created pitch
             }
            return result;
         }catch(error){
             if(error instanceof z.ZodError){
                 const fieldErrors= error.flatten().fieldErrors;
-                seterrors(fieldErrors as unknown as Record<string,string>);
+                setErrors(fieldErrors as unknown as Record<string,string>);
                 toast({title:"Error",description:"PLease varify inputs and try again!",
                        variant:"destructive"
-                })    
+                });    
             }
 
                 return {...prevState,error:"Validation failed",status : "ERROR"};
-        }
+        
             toast({title:"Error",description:"An unexpected error has occurred",
-                       variant:"destructive"})
+                       variant:"destructive"});
             return {
                 ...prevState,error:"An unexpected error has occurred",
                 status:"ERROR",
-            }
+            };
         }
     };
 
-    const [state,formAction,isPending]=useActionState(handleFormSubmit,{error:'',status:"INITAL"});
+    const [state,formAction,isPending]=useActionState(handleFormSubmit,{error:"",status:"INITAL"});
 
 
-    return <form action={formAction}className="startup-form">
+    return (<form action={formAction} className="startup-form">
         <div>
             <label htmlFor="title" className="startup-form_label">Title</label>
             <Input 
@@ -112,7 +114,7 @@ const StartupForm =()=>{
         <div data-color-mode="light">
             <label htmlFor="pitch" className="startup-form_label">Pitch URL</label>
             
-            <MDeditor 
+            <MDEditor 
             value={pitch} 
             onChange={(value)=>setPitch(value as string)}
             id="pitch"
@@ -137,5 +139,7 @@ const StartupForm =()=>{
         <Send className="size-6 ml-2"/>
         </Button>
               
-    </form>}
+    </form>);
+};
+
 export default StartupForm;

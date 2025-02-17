@@ -7,7 +7,7 @@ import {after} from 'next/server'
 const view = async ({id}: {id: string}) => {
     const {views: totalviews} = await client.withConfig({useCdn: false}).fetch(STARTUP_VIEWS_QUERY, {id});
     after(async ()=>await writeClient.patch(id).set({views:totalviews+1}).commit())
-    return<div className="view-container">
+    return<div className="view-container mb-12 ">
         <div className="absolute -top-2 right-2">
             <Ping />
         </div>

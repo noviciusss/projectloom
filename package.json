@@ -14,7 +14,8 @@
   "packageManager": "npm@10.5.2",
   "overrides": {
     "react": "^19.0.0",
-    "react-dom": "^19.0.0"
+    "react-dom": "^19.0.0",
+    "next": "$next"
   },
   "dependencies": {
     "@radix-ui/react-icons": "^1.3.0",
@@ -22,6 +23,7 @@
     "@radix-ui/react-toast": "^1.2.6",
     "@sanity/image-url": "^1.1.0",
     "@sanity/vision": "^3.64.1",
+    "@sentry/nextjs": "^9.1.0",
     "@tailwindcss/typography": "^0.5.15",
     "@uiw/react-md-editor": "^4.0.5",
     "class-variance-authority": "^0.7.0",

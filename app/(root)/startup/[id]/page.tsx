@@ -33,15 +33,15 @@ const Page =async({params}:{params:Promise<{id:string}>})=>{
             <div className="flex-between gap-5">
                 <Link href={`/user/${post.author?._id}`} className="flex gap-2 items-center mb-3">
                     <Image 
-                        src={post.author?.image || '/avatar.png'} 
-                        alt={`${post.author?.name || 'User'}'s avatar`}
+                        src={post.author.image}
+                        alt={`${post.author.name}`}
                         width={64} 
                         height={64} 
                         className="rounded-full drop-shadow-lg"
                     />
                     <div>
                         <p className="text-20-medium">{post.author?.name}</p>
-                        <p className="text-16-medium !text-black-300">{post.author?.username}</p>
+                        <p className="text-16-medium !text-black-300">@{post.author.username}</p>
                     </div>
                 </Link>
                 <p className="category-tag">{post.category}</p>

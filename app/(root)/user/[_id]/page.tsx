@@ -9,15 +9,15 @@ import { StartupCardSkeleton } from '@/components/StartupCard';
 
 export const experimental_ppr=true;
 
-const Page=async ({params}:{params:Promise<{id:string,}>})=>{
+const Page=async ({params}:{params:Promise<{id:string}>})=>{
     const id = (await params).id;
     const session = await auth();
-    if(!session)return {}
+   
 
     const user = await client.fetch(AUTHOR_BY_ID_QUERY,{id});
     if(!user) return notFound();
     return <>{/**called react fragemnt */}
-      <section className='profile_card'>
+      <section className='profile_container'>
         <div className='profile-card'>
             <div className='profile_title'>
                 <h3 className='text-24-black uppercase text-center line-clamp-1'>
@@ -25,7 +25,7 @@ const Page=async ({params}:{params:Promise<{id:string,}>})=>{
                 </h3>
             </div>
             <Image 
-                src = {user.image}
+                src = {user?.image}
                 alt={user.name}
                 width={220}
                 height={220}
@@ -40,7 +40,7 @@ const Page=async ({params}:{params:Promise<{id:string,}>})=>{
         </div>
         <div className='flex-1 flex flex-col gap-5 lg:-mt-5'>
             <p className='text-30-bold'>
-                {session?.id===id?'Your':'All'}Project
+                {session?.id===id?'Your':'All'} Project
             </p>
             <ul className='card_grid-sm'>
                 <Suspense fallback={<StartupCardSkeleton/>}>

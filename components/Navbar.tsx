@@ -35,11 +35,12 @@ const Navbar = async () => {
                             >
                                 <button type='submit'>
                                     <span className='max-sm:hidden'>Logout</span>
+                                    <LogOut className='size-6 sm:hidden text-red-500'/>
                                 </button>
-                                <LogOut className='size-6 sm:hidden text-red-500'/>
+                                
                             </form>
 
-                            <Link href={`/user/${session.user.id}`}>
+                            <Link href={`/user/${session?.id}`}>
                                 <Avatar className='size-10'>
                                     <AvatarImage src={session?.user?.image || ''} alt={session?.user?.name || ''}/>
                                     <AvatarFallback>AV</AvatarFallback>

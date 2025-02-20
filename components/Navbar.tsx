@@ -9,7 +9,7 @@ import { Avatar, AvatarFallback, AvatarImage } from './ui/avatar';
 const Navbar = async () => {
     const session = await auth();
     return (
-        <div className='px-5 py-3 bg-white shadow-sm font-work-sans'>
+        <header className='px-5 py-3 bg-white shadow-sm font-work-sans'>
             <nav className='flex justify-between items-center'>
                 <Link href='/'>
                     <Image
@@ -40,7 +40,7 @@ const Navbar = async () => {
                                 
                             </form>
 
-                            <Link href={`/user/${session?.user?.id || session?.id || ''}`}>
+                            <Link href={`/user/${session?.id}`}>
                                 <Avatar className='size-10'>
                                 <AvatarImage src={session?.user?.image || ''} alt={session?.user?.name || ''}/>
                                 <AvatarFallback>AV</AvatarFallback>
@@ -59,7 +59,7 @@ const Navbar = async () => {
                     )}
                 </div>
             </nav>
-        </div>
+        </header>
     );
 };
 

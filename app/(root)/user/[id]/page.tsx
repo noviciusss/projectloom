@@ -18,7 +18,7 @@ const Page=async ({params}:{params:Promise<{id:string}>})=>{
     if(!user) return notFound();
     return <>{/**called react fragemnt */}
       <section className='profile_container'>
-        <div className='profile-card'>
+        <div className='profile_card'>
             <div className='profile_title'>
                 <h3 className='text-24-black uppercase text-center line-clamp-1'>
                     {user.name}

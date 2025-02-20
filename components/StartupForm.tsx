@@ -50,8 +50,6 @@ const StartupForm = () => {
 
                 return {...prevState,error:"Validation failed",status : "ERROR"};
         
-            toast({title:"Error",description:"An unexpected error has occurred",
-                       variant:"destructive"});
             return {
                 ...prevState,error:"An unexpected error has occurred",
                 status:"ERROR",

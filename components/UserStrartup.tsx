@@ -2,7 +2,7 @@ import { STARTUPS_BY_AUTHOR } from "@/lib/queries";
 import { client } from "@/sanity/lib/client";
 import React from "react";
 import StartupCard,{StartupTypeCard} from "./StartupCard";
-import { startup } from "@/sanity/schemaTypes/strartup";
+
 
 const UserStartups=async ({id}:{id:string})=>{
    const startups = await client.fetch(STARTUPS_BY_AUTHOR,{id})

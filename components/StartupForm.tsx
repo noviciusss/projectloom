@@ -6,7 +6,6 @@ import { Textarea } from "./ui/textarea";
 import MDEditor from "@uiw/react-md-editor";
 import { Button } from "./ui/button";
 import { Send } from "lucide-react";
-import { error } from "console";
 import { formSchema } from "@/lib/validation";
 import {z} from 'zod';
 import { useToast } from "@/hooks/use-toast";

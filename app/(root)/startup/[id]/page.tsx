@@ -33,19 +33,34 @@ const Page =async({params}:{params:Promise<{id:string}>})=>{
         <img src={post.image} alt="images" className="w-full h-auto rounded-xl"></img>
         <div className="space-y-5 mt-10 max-w-4xl mx-auto">
             <div className="flex-between gap-5">
-                <Link href={`/user/${post.author?._id}`} className="flex gap-2 items-center mb-3">
-                    <Image 
-                        src={post.author.image}
-                        alt={`${post.author.name}`}
-                        width={64} 
-                        height={64} 
-                        className="rounded-full drop-shadow-lg"
-                    />
-                    <div>
-                        <p className="text-20-medium">{post.author?.name}</p>
-                        <p className="text-16-medium !text-black-300">@{post.author.username}</p>
-                    </div>
-                </Link>
+            {post.author ? (
+            <Link 
+              href={`/user/${post.author._id || "#"}`} 
+              className="flex gap-2 items-center mb-3"
+            >
+              {post.author.image ? (
+                <Image 
+                  src={post.author.image}
+                  alt={post.author.name || "Unknown User"}
+                  width={64} 
+                  height={64} 
+                  className="rounded-full drop-shadow-lg"
+                />
+              ) : (
+                <div className="w-16 h-16 bg-gray-300 rounded-full"></div> // Placeholder for missing image
+              )}
+              
+              <div>
+                <p className="text-20-medium">{post.author.name || "Unknown User"}</p>
+                <p className="text-16-medium !text-black-300">
+                  @{post.author.username || "anonymous"}
+                </p>
+              </div>
+            </Link>
+          ) : (
+            <p className="text-gray-500">Author not available</p>
+          )}
+
                 <p className="category-tag">{post.category}</p>
             </div>
             <h3 className="text-30-bold">Pitch Detail</h3>

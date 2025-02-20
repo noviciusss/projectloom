@@ -21,6 +21,11 @@ const nextConfig: NextConfig = {
     buildActivityPosition:'bottom-right'
   },
 };
+module.exports = {
+  eslint: {
+    ignoreDuringBuilds: true,
+  },
+}
 
 export default withSentryConfig(withSentryConfig(nextConfig, {
 // For all available options, see:

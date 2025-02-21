@@ -26,8 +26,7 @@ export const { handlers, auth, signIn, signOut } = NextAuth({
         const user= await client.withConfig({useCdn:false}).fetch(AUTHOR_BY_GITHUB_ID_QUERY,{
           id:profile?.id,
         });
-        if(!user){
-        token.id=user?._id;}
+        token.id=user?._id;
       }
       return token;
     },
